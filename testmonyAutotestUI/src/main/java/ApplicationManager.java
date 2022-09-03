@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.BasePage;
+import pages.Element;
 import pages.MainPage;
 import pages.SendPage;
 
@@ -9,6 +10,7 @@ public class ApplicationManager {
     public BasePage basePage;
     public MainPage mainPage;
     public SendPage sendPage;
+    public Element element;
 
     public MainPage getMainPage() {
         return mainPage;
@@ -16,6 +18,10 @@ public class ApplicationManager {
 
     public SendPage getSendPage() {
         return sendPage;
+    }
+
+    public Element element() {
+        return element;
     }
 
     protected void init() throws InterruptedException {
