@@ -3,10 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MainPage {
+public class MainPage extends BasePage {
 
-    private WebDriver driver;
-    public MainPage(WebDriver driver) { this.driver = driver; }
+    public MainPage(WebDriver driver) { super(driver);}
 
     private By header = By.xpath("/html/body/h1");
     private By dataSend = By.xpath("//*[@id=\"send_button\"]");
@@ -17,10 +16,8 @@ public class MainPage {
         return driver.findElement(header).getText();
     }
 
-    public SendPage clickSend() {
-        driver.findElement(dataSend).click();
-        return new SendPage(driver);
-
+    public void clickSend() {
+        click(driver.findElement(dataSend));
     }
 
     /*

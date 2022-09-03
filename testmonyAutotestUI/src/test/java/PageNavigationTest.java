@@ -1,36 +1,17 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.MainPage;
 import pages.SendPage;
 
-public class PageNavigationTest {
-
-    private WebDriver driver;
-
-
-    @BeforeMethod
-    public void setupPage() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\lamvrosenkova\\Documents\\PSA\\autotest\\Projects\\testimonyAutotests\\testmonyAutotestUI\\src\\main\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("http://127.0.0.1:5500/index.html");
-        Thread.sleep(1000);
-    }
-
+public class PageNavigationTest extends TestBase {
 
     @Test
     public void FromMainToSendAndBack () throws InterruptedException {
-        MainPage mainPage = new MainPage(driver);
-        SendPage sendPage = new SendPage(driver);
-        mainPage.clickSend();
-        Assert.assertEquals(sendPage.getHeaderText(), "Передача показаний");
+        applicationManager.getMainPage().clickSend();
+        Assert.assertEquals(applicationManager.getSendPage().getHeaderText(), "Передача показаний");
         Thread.sleep(1000);
-        sendPage.clickBackButton();
-        Assert.assertEquals(mainPage.getHeaderText(), "Neo ЖКХ");
+        applicationManager.getSendPage().clickBackButton();
+        Assert.assertEquals(applicationManager.getMainPage().getHeaderText(), "Neo ЖКХ");
     }
 
 
@@ -54,8 +35,4 @@ public class PageNavigationTest {
     }*/
 
 
-    @AfterMethod
-    public void closePage() {
-        driver.quit();
-    }
 }
